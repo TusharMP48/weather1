@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Welcome to WeatherExcel</title>
+            <style>
+            @import url('https://fonts.cdnfonts.com/css/komika-poster');
+                body{
+                    margin: 0px;
+                    background-image: url('./AkinatorBackground.png');
+                    height: 100vh;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                    font-family: 'Komika Sketch', sans-serif;
+                    font-size: 25px;
+                }
+                header{
+                    background-image: url('https://cdn2.steamgriddb.com/hero_thumb/e2182fb0c419225b7a8ea9f816370439.jpg');
+                    padding: 40px 40px;
+                    display: flex;
+                    align-items: flex-start;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                }
+
+                .box{
+                    border: 5px solid darkblue;
+                    width: 500px;
+                    background-color: aqua;
+                    display: inline-block;
+                    border-radius: 25px;
+                    margin: 25px;
+                    padding: 25px;
+                }
+
+                .centerbox{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                nav:hover {
+                    text-shadow: 0px 0px 15px white;
+                }
+            </style>
+        </head>
+
+        <body>
+            <header>
+                <nav>
+                    <a href="https://en.akinator.com/">akinator</a>
+                </nav>
+            </header>
+            <div class="centerbox">
+                    
+
+                <h1>Weather Website</h1>
+                
+                <div class="box">
+                    <p id="tempc">Temperature</p>
+                    <p id="tempf">Temperature</p>
+                </div>
+                <div class="box">
+                    <p id="humi">Humidity</p>
+                </div>
+            </div>
+            
+            <script>
+              const API_URL = "https://16afeef2-403c-4657-abaf-0a9328b9dcf7-00-9l04p6ib2ebl.picard.replit.dev/data";
+
+              const tempc = document.getElementById('tempc');
+              const tempf = document.getElementById('tempf');
+              const humi = document.getElementById('humi');
+              const timestamp = document.getElementById('ts');
+              const status = document.getElementById('status');
+
+
+              async function getvalue(){
+                  const response = await fetch(API_URL);
+                  const data = await response.json();
+                  
+                  tempc.textContent = data.temperature + '°C';
+                  tempf.textContent = ((data.temperature * 9 / 5) + 32)  + "°F";
+                  humi.textContent = data.humidity + "%";
+                  timestamp.textContent = data.timestamp;
+                  status.textContent = "connected";      
+              }
+
+              getvalue();
+
+
+
+
+
+         </script>
+        </body>
+    </html>
